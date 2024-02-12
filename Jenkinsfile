@@ -11,7 +11,8 @@ pipeline{
             steps{
                 echo 'Testing the app'
                 withPythonEnv('myenv'){
-                    sh 'python main.py'
+                    sh 'pip install pytest requests'
+                    sh 'pytest main.py'
                 }
 
             }
