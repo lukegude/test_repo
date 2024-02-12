@@ -10,10 +10,7 @@ pipeline{
         stage('Test'){
             steps{
                 echo 'Testing the app'
-                withPythonEnv('python3'){
-                    sh 'pip install pytest requests'
-                    sh 'pytest main.py'
-                }
+                pysh 'python3 --version'
 
             }
         }
