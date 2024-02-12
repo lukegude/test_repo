@@ -11,7 +11,13 @@ pipeline{
             steps{
                 echo 'Testing the app'
                 withPythonEnv('python3'){
-                    sh 'python3 --version'
+                    sh 'pip install pytest'
+                    script{
+                        def result = sh(script: 'pytest main.py', returnStatus: true)
+                        if(result != 0){
+                            error('Tests failed')
+                        }
+                    }
                 }
 
 
