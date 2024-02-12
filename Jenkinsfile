@@ -1,9 +1,10 @@
 pipeline{
     agent any
     stages{
-        stage('Build'){
+        stage('Checkout'){
             steps{
-                echo 'Building the app'
+                echo 'Checking out the code'
+                git branch: 'main', url: 'https://github.com/lukegude/test_repo.git'
             }
         }
         stage('Test'){
