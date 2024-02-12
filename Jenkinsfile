@@ -11,14 +11,21 @@ pipeline{
             steps{
                 echo 'Testing the app'
                 withPythonEnv('python3'){
-                    sh 'pip install -r requirements.txt'
                     script{
                         def result = sh(script: 'pytest main.py', returnStatus: true)
-                        echo "Test result: ${result}"
+                        if(result != 0){
+                            error('Tests failed')
+                        }
                     }
                 }
 
 
+            }
+        }
+        stage('Build'){
+            steps{
+                echo 'Building the app'
+                sh 'docker build -t test_app .'
             }
         }
     }
