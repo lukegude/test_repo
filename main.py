@@ -1,3 +1,10 @@
 import requests
+import pytest
 
-print(requests.get('http://google.com/').status_code)
+
+
+repsonse = requests.get('https://api.github.com')
+
+def test_response():
+    assert repsonse.status_code == 200
+
